@@ -12,5 +12,5 @@ export const MONTHS = {
   11: "novembre",
   12: "décembre",
 };
-
-export const getMonth = (date) => MONTHS[date.getMonth()];
+// Modification de l'indice de l'objet MONTHS pour qu'il commence à 1 (code avant export const getMonth = (date) => MONTHS[date.getMonth()])
+export const getMonth = (date) => MONTHS[date.getMonth()+1];

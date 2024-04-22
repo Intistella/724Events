@@ -8,11 +8,13 @@ const Slider = () => {
   const { data } = useData();
   const [index, setIndex] = useState(0);
   const byDateDesc = data?.focus.sort((evtA, evtB) =>
-    new Date(evtA.date) < new Date(evtB.date) ? -1 : 1
+// Si la date de l'événement A est inférieur à la date de l'événement B on renvoi 1 ce qui veut dire que l'événement A s'affiche avant l'événement B (code avant new Date(evtA.date) < new Date(evtB.date) ? -1 : 1)
+    new Date(evtA.date) > new Date(evtB.date) ? 1 : -1
   );
   const nextCard = () => {
     setTimeout(
-      () => setIndex(index < byDateDesc.length ? index + 1 : 0),
+// Si l'index actuel est inférieur à la taille du tableau moins 1, on incrémente l'index de 1 (code avant () => setIndex(index < byDateDesc.length ? index + 1 : 0))
+      () => setIndex(index < byDateDesc.length-1 ? index + 1 : 0),
       5000
     );
   };
@@ -42,10 +44,12 @@ const Slider = () => {
             <div className="SlideCard__pagination">
               {byDateDesc.map((_, radioIdx) => (
                 <input
-                  key={`${event.id}`}
+// Changement de la key pour que les boutons radio aient des clés différentes (code avant key:{`${event.id}`})               
+                  key={`${radioIdx + 1}`}
                   type="radio"
                   name="radio-button"
-                  checked={idx === radioIdx}
+// remplacement d idx par index pour que l'index des boutons radio soit mis à jour (code avant checked={idx === radioIdx})                 
+                  checked={index === radioIdx}
                 />
               ))}
             </div>

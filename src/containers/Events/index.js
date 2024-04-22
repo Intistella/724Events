@@ -16,7 +16,8 @@ const EventList = () => {
   const filteredEvents = (
     (!type
       ? data?.events
-      : data?.events) || []
+// Si aucun type n'est sélectionné, on affiche tous les événements, sinon on affiche uniquement les événements du type sélectionné , l'opérateur OR permet d'afficher les événements du type sélectionné et les événements du type par défaut (code avant :data?.events) || []-)   
+      : data?.events.filter((event) => event.type === type)) || []
   ).filter((event, index) => {
     if (
       (currentPage - 1) * PER_PAGE <= index &&

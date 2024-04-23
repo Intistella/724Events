@@ -16,7 +16,8 @@ const Select = ({
   const [value, setValue] = useState();
   const [collapsed, setCollapsed] = useState(true);
   const changeValue = (newValue) => {
-    onChange();
+// Nous appelons la fonction onChange avec la nouvelle valeur sélectionnée afin que le setValue se mette à jour en fonction de la newValue (code avant onChange())    
+    onChange(newValue);
     setValue(newValue);
     setCollapsed(newValue);
   };

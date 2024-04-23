@@ -8,7 +8,7 @@ const Slider = () => {
   const { data } = useData();
   const [index, setIndex] = useState(0);
   const byDateDesc = data?.focus.sort((evtA, evtB) =>
-// Si la date de l'événement A est inférieur à la date de l'événement B on renvoi 1 ce qui veut dire que l'événement A s'affiche avant l'événement B (code avant new Date(evtA.date) < new Date(evtB.date) ? -1 : 1)
+// Si la date de l'événement A est supérieur à la date de l'événement B on renvoi 1 ce qui veut dire que l'événement A s'affiche avant l'événement B (code avant new Date(evtA.date) < new Date(evtB.date) ? -1 : 1)
     new Date(evtA.date) > new Date(evtB.date) ? 1 : -1
   );
   const nextCard = () => {

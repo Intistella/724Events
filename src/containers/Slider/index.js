@@ -26,9 +26,9 @@ const Slider = () => {
   return (
     <div className="SlideCardList">
       {byDateDesc?.map((event, idx) => (
-        <>
+// Substitution du fragement par une div et changement de la key pour corriger" index.js:26 Warning: Each child in a list should have a unique "key" prop.                  
+        <div key={Math.random()}> 
           <div
-            key={event.title}
             className={`SlideCard SlideCard--${
               index === idx ? "display" : "hide"
             }`}
@@ -58,7 +58,7 @@ const Slider = () => {
               ))}
             </div>
           </div>
-        </>
+        </div>
       ))}
     </div>
   );

@@ -4,7 +4,8 @@ import Field, { FIELD_TYPES } from "../../components/Field";
 import Select from "../../components/Select";
 import Button, { BUTTON_TYPES } from "../../components/Button";
 
-const mockContactApi = () => new Promise((resolve) => { setTimeout(resolve, 1000); })
+// Réduction du temps d'attente avant l'affichage du message de succès, car 1000ms engendre une erreur du test
+const mockContactApi = () => new Promise((resolve) => { setTimeout(resolve, 900); })
 
 const Form = ({ onSuccess, onError }) => {
   const [sending, setSending] = useState(false);

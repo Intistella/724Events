@@ -13,9 +13,10 @@ import Modal from "../../containers/Modal";
 import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
+// récupération et arrangement des données pour retourner les évènements en ordre ascendant+ initialisation du lastEvent pour le premier événement du tableau ordonné.
   const {data} = useData()
-  const filteredEvents = data?.events?.sort((evtA, evtB) => new Date(evtA.date) > new Date(evtB.date) ? -1 : 1)
-  const lastEvent = filteredEvents?.[0]
+  const sortedEvents = data?.events?.sort((evtA, evtB) => new Date(evtA.date) > new Date(evtB.date) ? -1 : 1)
+  const lastEvent = sortedEvents?.[0]
   return <>
     <header>
       <Menu />
@@ -53,14 +54,14 @@ const Page = () => {
           </ServiceCard>
         </div>
       </section>
-      <section className="EventsContainer">
+      <section className="EventsContainer" data-testid='eventsList-testid'>
         <h2 className="Title">Nos réalisations</h2>
         <EventList />
       </section>
       <section className="PeoplesContainer">
         <h2 className="Title">Notre équipe</h2>
         <p>Une équipe d’experts dédiés à l’ogranisation de vos événements</p>
-        <div className="ListContainer">
+        <div className="ListContainer" data-testid='peopleList-testid'> 
           <PeopleCard
             imageSrc="/images/stephanie-liverani-Zz5LQe-VSMY-unsplash.png"
             name="Samira"
@@ -115,16 +116,20 @@ const Page = () => {
         </Modal>
       </div>
     </main>
-    <footer className="row">
-      <div className="col presta">
-        <h3>Notre derniére prestation</h3>
-        <EventCard
-          imageSrc={lastEvent?.cover}
-          title={lastEvent?.title}
-          date={new Date(lastEvent?.date)}
-          small
-          label="boom"
-        />
+    <footer className="row" data-testid='footer-testid'>
+      <div className="col presta" data-testid='lastEventDiv-testid'>
+        <h3>Notre derniére prestation</h3>          
+
+    {lastEvent && (       
+      <EventCard
+        data-testid="lasEventCard-testid"
+        imageSrc={lastEvent.cover}
+        title={lastEvent.title}
+        date={new Date(lastEvent.date)}
+        small
+        label={lastEvent.type} 
+      /> 
+     )}       
       </div>
       <div className="col contact">
         <h3>Contactez-nous</h3>
@@ -132,21 +137,21 @@ const Page = () => {
         <div>01 23 45 67 89</div>
         <div>contact@724events.com</div>
         <div>
-          <a href="#twitch">
+          <a href="#twitch" data-testid='twitch-testid'>
             <Icon name="twitch" />
           </a>
-          <a href="#facebook">
+          <a href="#facebook" data-testid='facebook-testid'>
             <Icon name="facebook" />
           </a>
-          <a href="#twitter">
+          <a href="#twitter" data-testid='twitter-testid'>
             <Icon name="twitter" />
           </a>
-          <a href="#youtube">
+          <a href="#youtube" data-testid='youtube-testid'>
             <Icon name="youtube" />
           </a>
         </div>
       </div>
-      <div className="col description">
+      <div className="col description" data-testid='agencyDescription-testid'>
         <Logo size="large" />
         <p>
           Une agence événementielle propose des prestations de service
